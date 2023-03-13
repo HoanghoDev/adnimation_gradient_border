@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+:root{
+    --black: #211E32;
+    --dark: #2A2F42;
+    --green: #5AFE72;
+    --white: #ffffff;
+    --purple: #9A3BBA;
+    --danger: #FE4E56;
+    --yellow: #fbff22;
+}
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+body {
+    min-height: 100vh;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+  .card {
+    position: relative;
+    background: var(--dark);
+    width: 300px;
+    height: 450px;
+    padding: 3px;
+    border-radius: 5px;
+    margin: 50px;
+    transition:  0.5s;
+  }
+  .card::before,
+  .card::after {
+    position: absolute;
+    width: 104%;
+    height: 102%;
+    top: -1%;
+    left: -2%;
+    content: "";
+    border-radius: 6px;
+    background-image: linear-gradient(
+      var(--rotate),
+      var(--purple), var(--danger));
+    z-index: -1;
+    transition: opacity 0.5s;
+    animation: none;
+    opacity: 0;
+  }
+  .card::after{
+    filter: blur(40px);
+  }
+  .card:hover::before,
+  .card:hover::after{
+    opacity: 1;
+    animation: spin 1.5s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      --rotate: 0deg;
+    }
+    100% {
+      --rotate: 360deg;
+    }
+  }
+  .card img:nth-child(1){
+    position: absolute;
+    bottom: 2%;
+    left: 2%;
+    width: 96%;
+    height:96%;
+    border-radius: 6px;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+  .card:hover img:nth-child(1){
+    opacity: 0;
+  }
+  .card img:nth-child(2){
+    position: absolute;
+    bottom: 0%;
+    width: 150%;
+    left: 0%;
+    transform: translateX(-25%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  .card:hover img:nth-child(2){
+    opacity: 1;
+  }
+  .card .content{
+    position: absolute;
+    font-size: 40px;
+    font-family: 'Sacramento', cursive;
+    color: var(--white);
+    line-height: .8em;
+    top: 70%;
+    left: -10px;
+    rotate: -10deg;
+    text-shadow:  0 0px 10px var(--danger);
+    opacity: 0.5s;
+  }
+  .card:hover .content{
+    color: var(--yellow);
+    text-shadow:  0 0px 10px var(--purple);
+  }
+  .card1:hover{
+    background-color: transparent;
+  }
